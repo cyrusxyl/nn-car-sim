@@ -4,12 +4,14 @@
 
 % Vehicle Drifting Dynamics Simulation
 
-init_plot;
-record = true;
+init_drive_scene;
+init_track_scene;
+init_steer_plot;
+
 % --------Initialize Joystick--------
 joy = vrjoystick(1)
 x = [0;0;0;0;0;0];
-dt = 0.05;
+dt = 0.1;
 
 throttle = 0;
 steer = 0;
@@ -17,15 +19,16 @@ steer = 0;
 data = {};
 labels = [];
 
+
+
 %%
 
-t = 1;
+t = 0;
 while ~button(joy,1)     
-    
     % --------Use Joystick Input--------
     throttle = 10;
     
-    frame = getframe(gca);
+    frame = getframe(drive_scene);
     
     im = frame.cdata;
     im = imresize(im,[32 32]);
@@ -34,14 +37,17 @@ while ~button(joy,1)
     x1 = reshape(im, 1024, 1);
     
     y1 = matlab_nn(x1);
-    [a,Idx] = max(y1);
+    [~,Idx] = max(y1);
     steer = (Idx-1)*0.02 - 0.3;
     
     % ------Calculate Car Dynamics------
     u = [throttle; steer];
     x = dynamics_finite(x,u,dt);
     
-    update_plot;
-    pause(0.01);
-    t = t+1;
+    figure(1)
+    update_drive_scene;
+    update_track_scene;
+%     update_steer_plot;
+%     pause(0.01);
+    t = t+dt;
 end

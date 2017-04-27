@@ -17,11 +17,19 @@ steer = 0;
 data = {};
 labels = [];
 
+figure(2)
+subplot 211
+title('Steering Response');
+xlabel(
+subplot 212
+steer_plot = animatedline('MaximumNumPoints',200,'Parent',gca);
+title('Steering');
+
 %%
 
-t = 1;
+t = 0;
 while ~button(joy,1)     
-    
+    figure(1)
     % --------Use Joystick Input--------
     throttle = 10;
     
@@ -34,14 +42,21 @@ while ~button(joy,1)
     x1 = reshape(im, 1024, 1);
     
     y1 = matlab_nn(x1);
-    [m,Idx] = max(y1);
+    figure(2);
+    subplot 211
+    plot([-0.3:.02:0.3],y1);
+    [a,Idx] = max(y1);
     steer = (Idx-1)*0.02 - 0.3;
+    subplot 212
+    addpoints(steer_plot,t,steer);
+    axis([t-5,t+5,-0.3,0.3])
     
     % ------Calculate Car Dynamics------
     u = [throttle; steer];
     x = dynamics_finite(x,u,dt);
     
+    figure(1)
     update_plot;
     pause(0.01);
-    t = t+1;
+    t = t+dt;
 end

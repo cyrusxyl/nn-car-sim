@@ -1,8 +1,6 @@
 % ----------------------------------------
 % --------Initialize Visualization--------
 % ----------------------------------------
-
-load('rctrk.mat');
 figure(1)
 
 im = imread('Racetrack.jpg');
@@ -27,6 +25,7 @@ g = hgtransform;
 r = rectangle('Parent',g,'Position',[0 0 3.5 1.85],'FaceColor',[0 0 0]);
 C = makehgtform('translate',[-1.75,-0.925,0]);
 g.Matrix = C;
-drawnow
 axis off
+
+drive_scene = gca;
 
