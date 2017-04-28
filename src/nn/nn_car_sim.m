@@ -9,7 +9,7 @@ init_track_scene;
 init_steer_plot;
 
 % --------Initialize Joystick--------
-joy = vrjoystick(1)
+% joy = vrjoystick(1)
 x = [0;0;0;0;0;0];
 dt = 0.1;
 
@@ -26,7 +26,7 @@ s = linspace(-0.3,0.3,classes);
 %%
 
 t = 0;
-while ~button(joy,1)     
+while 1    
     % --------Use Joystick Input--------
     throttle = 10;
     
