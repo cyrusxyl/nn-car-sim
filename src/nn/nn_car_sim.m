@@ -19,6 +19,8 @@ steer = 0;
 data = {};
 labels = [];
 
+classes = 31;
+s = linspace(-0.3,0.3,classes);
 
 
 %%
@@ -36,9 +38,10 @@ while ~button(joy,1)
     im = im2double(im);
     x1 = reshape(im, 1024, 1);
     
-    y1 = matlab_nn(x1);
+%     y1 = matlab_nn(x1);
+    y1 = Classify(W,b,x1');
     [~,Idx] = max(y1);
-    steer = (Idx-1)*0.02 - 0.3;
+    steer = s(Idx);
     
     % ------Calculate Car Dynamics------
     u = [throttle; steer];
@@ -47,7 +50,7 @@ while ~button(joy,1)
     figure(1)
     update_drive_scene;
     update_track_scene;
-%     update_steer_plot;
+    update_steer_plot;
 %     pause(0.01);
     t = t+dt;
 end

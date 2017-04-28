@@ -1,10 +1,9 @@
 %%
-num_epoch = 30;
+num_epoch = 50;
 classes = 31;
-layers = [32*32, 64, classes];
+layers = [32*32, 4, classes];
 learning_rate = 0.01;
 
-load('../data/train_data_gray_matlab.mat', 'train_data', 'train_labels');
 train_data = train_data';
 train_labels = train_labels';
 
@@ -38,22 +37,9 @@ end
 %% plot performance stats
 figure
 plot(0:num_epoch,train_acc)
-hold on
-plot(0:num_epoch,valid_acc)
 title('Classification Accuracy')
-legend('train acc','valid acc')
 
 figure
 plot(0:num_epoch,train_loss)
-hold on
-plot(0:num_epoch,valid_loss)
-title('Network Loss')
-legend('train loss','valid loss')
 %% test accuracy
 [test_acc,test_loss] = ComputeAccuracyAndLoss(W, b, test_data, test_labels);
-
-%% plot weights
-weights = reshape(W{1},400,32,32);
-weights = permute(weights,[2,3,1]);
-weights = reshape(weights,32,32,1,400)+0.5;
-montage(weights);

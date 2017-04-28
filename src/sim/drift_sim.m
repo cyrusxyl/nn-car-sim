@@ -4,12 +4,12 @@
 
 % Vehicle Drifting Dynamics Simulation
 
-init_plot;
-record = true;
+init_drive_scene;
+record = false;
 % --------Initialize Joystick--------
 joy = vrjoystick(1)
-x = [0;0;0;0;0;0];
-dt = 0.05;
+x = [0;0;0;0;0;0;0];
+dt = 0.02;
 
 throttle = 0;
 steer = 0;
@@ -24,7 +24,7 @@ while ~button(joy,1)
     
     % --------Use Joystick Input--------
     throttle = 10;
-    steer = -0.3*axis(joy,1);
+    steer = -0.5*axis(joy,1);
     if button(joy,1)
         pause()   
     end 
@@ -33,7 +33,7 @@ while ~button(joy,1)
     u = [throttle; steer];
     x = dynamics_finite(x,u,dt);
     
-    update_plot;
+    update_drive_scene;
     if record
         data{t} = getframe(gca);
         labels(t) = steer;

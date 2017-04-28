@@ -1,6 +1,7 @@
 figure(2);
 subplot 211
-plot([-0.3:.02:0.3],y1);
+plot(s,y1);
+axis([-0.3,0.3,0,0.3])
 % title('Steering Response');
 % xlabel('Steering Angle (rad)');
 % ylabel('Network Response');

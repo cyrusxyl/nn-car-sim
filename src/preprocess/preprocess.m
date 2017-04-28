@@ -1,9 +1,9 @@
 %%
-train_labels = zeros(31, size(labels,2));
 
-x = [-0.3:.02:0.3];
-figure;
-for i = 1:size(data,2)
+
+x = [-0.3:.03:0.3];
+train_labels = zeros(size(x,1), size(labels,2));
+for i = 1:size(labels,2)
    label = labels(i);
    norm = normpdf(x,label,0.03)/sum(normpdf(x,label,0.03));
    [M,Idx] = max(norm);
