@@ -4,10 +4,6 @@
 
 % Vehicle Drifting Dynamics Simulation
 
-init_drive_scene;
-init_track_scene;
-init_steer_plot;
-
 % --------Initialize Joystick--------
 % joy = vrjoystick(1)
 x = [0;0;0;0;0;0];
@@ -22,6 +18,9 @@ labels = [];
 classes = 31;
 s = linspace(-0.3,0.3,classes);
 
+init_drive_scene;
+init_track_scene;
+init_steer_plot;
 
 %%
 
