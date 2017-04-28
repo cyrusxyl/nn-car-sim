@@ -33,6 +33,7 @@ for i = 1:N
 
     if mod(i, 100) == 0
         waitbar(i/N);
+        plot_weight;
     end
 end
 

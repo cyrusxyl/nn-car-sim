@@ -37,8 +37,8 @@ while 1
     im = im2double(im);
     x1 = reshape(im, 1024, 1);
     
-%     y1 = matlab_nn(x1);
-    y1 = Classify(W,b,x1');
+    y1 = matlab_nn(x1);
+%     y1 = Classify(W,b,x1');
     [~,Idx] = max(y1);
     steer = s(Idx);
     
