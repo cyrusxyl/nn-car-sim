@@ -1,3 +1,6 @@
+% Cyrus Liu
+% the Robotics Institute, Carnegie Mellon University
+
 function dx = dynamics(x, u)
 % Drifting dynamics developed based on 
 % Dynamics And Control Of Drifting In Automobiles, Hindiyeh 2013

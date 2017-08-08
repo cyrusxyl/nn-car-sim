@@ -1,11 +1,9 @@
 % Cyrus Liu
 % the Robotics Institute, Carnegie Mellon University
-% 01/22/2017
+% 08/08/2017
 
-% Vehicle Drifting Dynamics Simulation
+% A neural network driven vehicle simulation
 
-% --------Initialize Joystick--------
-% joy = vrjoystick(1)
 load('my_weights_4.mat');
 
 x = [0;0;0;0;0;0];
@@ -28,7 +26,6 @@ init_steer_plot;
 
 t = 0;
 while 1    
-    % --------Use Joystick Input--------
     throttle = 10;
     
     frame = getframe(drive_scene);
@@ -38,8 +35,9 @@ while 1
     im = rgb2gray(im);
     im = im2double(im);
     x1 = reshape(im, 1024, 1);
-    
-%     y1 = matlab_nn(x1);
+
+    % compute input using neural network
+%     y1 = matlab_nn(x1); % use matlab tool
     y1 = Classify(W,b,x1');
     [~,Idx] = max(y1);
     steer = s(Idx);

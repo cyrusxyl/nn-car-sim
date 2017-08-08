@@ -1,4 +1,6 @@
-%% plot weights
+% Cyrus Liu
+% the Robotics Institute, Carnegie Mellon University
+
 N = size(W{1},1);
 
 ax = ceil(sqrt(N));

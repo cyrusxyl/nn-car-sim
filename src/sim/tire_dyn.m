@@ -1,3 +1,6 @@
+% Cyrus Liu
+% the Robotics Institute, Carnegie Mellon University
+
 function [Fx,Fy] = tire_dyn(Ux, Ux_cmd, mu, mu_slide, Fz, C_x, C_alpha, alpha)
 
     % longitude wheel slip

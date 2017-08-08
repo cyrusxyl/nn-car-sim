@@ -1,4 +1,6 @@
-%%
+% Cyrus Liu
+% the Robotics Institute, Carnegie Mellon University
+
 num_epoch = 50;
 classes = 31;
 layers = [32*32, 4, classes];
